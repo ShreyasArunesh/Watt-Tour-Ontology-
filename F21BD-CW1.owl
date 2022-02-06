@@ -8,12 +8,16 @@
 @base <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl> .
 
 <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl> rdf:type owl:Ontology ;
-                                                                                 dcterms:SubmittedBy "Shreyas Arunesh"@en ;
+                                                                                 dcterms:SubmittedBy """Jiancheng Zhang H00
+Shreyas Arunesh H00357095
+Shonan Gomes H00"""@en ;
                                                                                  dcterms:SubmittedTo "Alasdair Gray"@en ;
-                                                                                 dcterms:creator "Shreyas Arunesh"@en ;
-                                                                                 dcterms:description "This is the Individual coursework for F21BD- CW1. Here the Knowledge representation of Watt Tour is illustrated"@en ;
+                                                                                 dcterms:creator "Shreyas Arunesh, Jiancheng Zhang, Shonan Gomes"@en ;
+                                                                                 dcterms:description """This is the Group coursework for F21BD- CW1.
+ This illiustrates the Knowledge representation of Watt Tour."""@en ;
                                                                                  dcterms:title "WattTour Ontology"@en ;
-                                                                                 owl:versionInfo "0.1"@en .
+                                                                                 owl:versionInfo "V  02: Remove all OOPS pitfalls."@en ,
+                                                                                                 "V 01: Development of the Ontology"@en .
 
 #################################################################
 #    Annotation properties
@@ -46,6 +50,7 @@ dcterms:title rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#canRegiesterFor
 :canRegiesterFor rdf:type owl:ObjectProperty ;
                  owl:inverseOf :willHave ;
+                 rdf:type owl:AsymmetricProperty ;
                  rdfs:domain :Person ;
                  rdfs:range :WattTour ;
                  rdfs:comment "Person can regester for Watt Tour" ;
@@ -56,9 +61,10 @@ dcterms:title rdf:type owl:AnnotationProperty .
 :hasCapital rdf:type owl:ObjectProperty ;
             rdfs:subPropertyOf owl:topObjectProperty ;
             owl:inverseOf :isCapitalOf ;
-            rdf:type owl:FunctionalProperty ;
-            rdfs:domain <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#Country(wikidata:Country)> ;
-            rdfs:range <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
+            rdf:type owl:FunctionalProperty ,
+                     owl:AsymmetricProperty ;
+            rdfs:domain :Country ;
+            rdfs:range :City ;
             rdfs:comment "Country has the capital city" ;
             rdfs:label "hasCapital"@en .
 
@@ -67,8 +73,9 @@ dcterms:title rdf:type owl:AnnotationProperty .
 :hasCities rdf:type owl:ObjectProperty ;
            rdfs:subPropertyOf owl:topObjectProperty ;
            owl:inverseOf :isLocatedIn ;
-           rdfs:domain <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#Country(wikidata:Country)> ;
-           rdfs:range <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
+           rdf:type owl:AsymmetricProperty ;
+           rdfs:domain :Country ;
+           rdfs:range :City ;
            rdfs:comment "Country has cities" ;
            rdfs:label "hasCities"@en .
 
@@ -76,6 +83,7 @@ dcterms:title rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#isAttractedBy
 :isAttractedBy rdf:type owl:ObjectProperty ;
                owl:inverseOf :isAttractedTo ;
+               rdf:type owl:AsymmetricProperty ;
                rdfs:domain :Places ;
                rdfs:range :Person ;
                rdfs:comment "Places is atttracted by person" ;
@@ -83,7 +91,8 @@ dcterms:title rdf:type owl:AnnotationProperty .
 
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#isAttractedTo
-:isAttractedTo rdf:type owl:ObjectProperty ;
+:isAttractedTo rdf:type owl:ObjectProperty ,
+                        owl:AsymmetricProperty ;
                rdfs:domain :Person ;
                rdfs:range :Places ;
                rdfs:comment "Person is attracted to Places" ;
@@ -93,9 +102,10 @@ dcterms:title rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#isCapitalOf
 :isCapitalOf rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
-             rdf:type owl:FunctionalProperty ;
-             rdfs:domain <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-             rdfs:range <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#Country(wikidata:Country)> ;
+             rdf:type owl:FunctionalProperty ,
+                      owl:AsymmetricProperty ;
+             rdfs:domain :City ;
+             rdfs:range :Country ;
              rdfs:comment "City is the capital of the country" ;
              rdfs:label "isCapitalOf"@en .
 
@@ -103,8 +113,9 @@ dcterms:title rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#isLocatedIn
 :isLocatedIn rdf:type owl:ObjectProperty ;
              rdfs:subPropertyOf owl:topObjectProperty ;
-             rdfs:domain <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-             rdfs:range <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#Country(wikidata:Country)> ;
+             rdf:type owl:AsymmetricProperty ;
+             rdfs:domain :City ;
+             rdfs:range :Country ;
              rdfs:comment "City is located in the country" ;
              rdfs:label "isLocatedIn"@en .
 
@@ -112,6 +123,7 @@ dcterms:title rdf:type owl:AnnotationProperty .
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#isOptionOf
 :isOptionOf rdf:type owl:ObjectProperty ;
             owl:inverseOf :spansFor ;
+            rdf:type owl:AsymmetricProperty ;
             rdfs:domain :TourPlans ;
             rdfs:range :WattTour ;
             rdfs:comment "Watt tour has multiple options for the tour" ;
@@ -129,6 +141,7 @@ dcterms:title rdf:type owl:AnnotationProperty .
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#willHave
 :willHave rdf:type owl:ObjectProperty ,
+                   owl:AsymmetricProperty ,
                    owl:IrreflexiveProperty ;
           rdfs:domain :WattTour ;
           rdfs:range :Person ;
@@ -140,6 +153,42 @@ dcterms:title rdf:type owl:AnnotationProperty .
 owl:topObjectProperty rdfs:comment "All the object property comes under this class" .
 
 
+###  https://www.wikidata.org/wiki/Q174091/capitalIs
+<https://www.wikidata.org/wiki/Q174091/capitalIs> rdf:type owl:ObjectProperty ;
+                                                  owl:inverseOf <https://www.wikidata.org/wiki/Q174091/capitalOf> ;
+                                                  rdfs:domain :Country ;
+                                                  rdfs:range <https://www.wikidata.org/wiki/Q174091/CapitalCity> ;
+                                                  rdfs:comment "This is the object property to represent the capital city of the country"@en ;
+                                                  rdfs:label "capitalIs" .
+
+
+###  https://www.wikidata.org/wiki/Q174091/capitalOf
+<https://www.wikidata.org/wiki/Q174091/capitalOf> rdf:type owl:ObjectProperty ,
+                                                           owl:AsymmetricProperty ;
+                                                  rdfs:domain <https://www.wikidata.org/wiki/Q174091/CapitalCity> ;
+                                                  rdfs:range :Country ;
+                                                  rdfs:comment "This is the object property of the city capital country"@en ;
+                                                  rdfs:label "capitalOf"@en .
+
+
+###  https://www.wikidata.org/wiki/https://www.wikidata.org/wiki/Q668/describesThe
+<https://www.wikidata.org/wiki/https://www.wikidata.org/wiki/Q668/describesThe> rdf:type owl:ObjectProperty ;
+                                                                                owl:inverseOf <https://www.wikidata.org/wiki/https://www.wikidata.org/wiki/Q668/summarisedBy> ;
+                                                                                rdf:type owl:IrreflexiveProperty ;
+                                                                                rdfs:domain :Description ;
+                                                                                rdfs:range :Name ;
+                                                                                rdfs:comment "Breifs the tour Name"@en ;
+                                                                                rdfs:label "describesThe"@en .
+
+
+###  https://www.wikidata.org/wiki/https://www.wikidata.org/wiki/Q668/summarisedBy
+<https://www.wikidata.org/wiki/https://www.wikidata.org/wiki/Q668/summarisedBy> rdf:type owl:ObjectProperty ;
+                                                                                rdfs:domain :Name ;
+                                                                                rdfs:range :Description ;
+                                                                                rdfs:comment "The name of the tour is summarised by description  class" ;
+                                                                                rdfs:label "summarisedBy" .
+
+
 #################################################################
 #    Data properties
 #################################################################
@@ -147,7 +196,7 @@ owl:topObjectProperty rdfs:comment "All the object property comes under this cla
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#latitude
 :latitude rdf:type owl:DatatypeProperty ;
           rdfs:subPropertyOf owl:topDataProperty ;
-          rdfs:domain <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
+          rdfs:domain :City ;
           rdfs:range xsd:double ;
           rdfs:comment "The longitude of the city - A Double value" ;
           rdfs:label "latitude" .
@@ -156,7 +205,7 @@ owl:topObjectProperty rdfs:comment "All the object property comes under this cla
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#longitude
 :longitude rdf:type owl:DatatypeProperty ;
            rdfs:subPropertyOf owl:topDataProperty ;
-           rdfs:domain <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
+           rdfs:domain :City ;
            rdfs:range xsd:double ;
            rdfs:comment "The latitude of the city - A Double value" ;
            rdfs:label "longitude"@en .
@@ -202,12 +251,31 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
                rdfs:label "AdultTourists"@en .
 
 
+###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#City
+:City rdf:type owl:Class ;
+      owl:equivalentClass <https://dbpedia.org/ontology/City> ;
+      rdfs:comment "The cities included in any Tour"@en ;
+      rdfs:label "City" .
+
+
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Clubs
 :Clubs rdf:type owl:Class ;
        rdfs:subClassOf :AdultAttractions ;
        owl:disjointWith :Temples ;
        rdfs:comment "The clubs"@en ;
        rdfs:label "Clubs"@en .
+
+
+###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Country
+:Country rdf:type owl:Class ;
+         owl:equivalentClass <https://dbpedia.org/ontology/Country> ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty <https://www.wikidata.org/wiki/Q174091/capitalIs> ;
+                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                               owl:onClass <https://www.wikidata.org/wiki/Q174091/CapitalCity>
+                             ] ;
+         rdfs:comment "The Countries covered in the tour"@en ;
+         rdfs:label "Country" .
 
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Description
@@ -244,6 +312,10 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Name
 :Name rdf:type owl:Class ;
+      owl:equivalentClass [ rdf:type owl:Restriction ;
+                            owl:onProperty <https://www.wikidata.org/wiki/https://www.wikidata.org/wiki/Q668/describesThe> ;
+                            owl:someValuesFrom :Description
+                          ] ;
       rdfs:subClassOf :WattTour ;
       rdfs:comment "The Name of the tour"@en ;
       rdfs:label "Name"@en .
@@ -251,14 +323,22 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#OneDay
 :OneDay rdf:type owl:Class ;
-        owl:equivalentClass [ rdf:type owl:Restriction ;
-                              owl:onProperty :hasCities ;
-                              owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
-                              owl:onClass <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)>
+        owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :hasCities ;
+                                                     owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass :City
+                                                   ]
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :hasCities ;
+                                                     owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                                     owl:onClass :City
+                                                   ]
+                                                 ) ;
+                              rdf:type owl:Class
                             ] ;
         rdfs:subClassOf :TourPlans ;
         rdfs:comment "All one day plans are included"@en ;
-        rdfs:label "One day tour plans" .
+        rdfs:label "OneDayPackage" .
 
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Parks
@@ -271,7 +351,8 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Person
 :Person rdf:type owl:Class ;
-        owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:equivalentClass <http://xmlns.com/foaf/spec/#Person> ,
+                            [ rdf:type owl:Restriction ;
                               owl:onProperty :canRegiesterFor ;
                               owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                               owl:onClass :WattTour
@@ -297,7 +378,7 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
 :TourPlans rdf:type owl:Class ;
            owl:equivalentClass [ rdf:type owl:Restriction ;
                                  owl:onProperty :hasCities ;
-                                 owl:someValuesFrom <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)>
+                                 owl:someValuesFrom :City
                                ] ;
            rdfs:comment "The tour Plans"@en ;
            rdfs:label "TourPlans"@en .
@@ -315,19 +396,19 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
         owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
                                                      owl:onProperty :hasCities ;
                                                      owl:minQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
-                                                     owl:onClass <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)>
+                                                     owl:onClass :City
                                                    ]
                                                    [ rdf:type owl:Restriction ;
                                                      owl:onProperty :hasCities ;
                                                      owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
-                                                     owl:onClass <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)>
+                                                     owl:onClass :City
                                                    ]
                                                  ) ;
                               rdf:type owl:Class
                             ] ;
         rdfs:subClassOf :TourPlans ;
         rdfs:comment "All two day plans are included"@en ;
-        rdfs:label "Two day tour plans" .
+        rdfs:label "TwoDayPackage" .
 
 
 ###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#WattTour
@@ -352,75 +433,217 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
           rdfs:label "WatTour"@en .
 
 
-###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)
-<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> rdf:type owl:Class ;
-                                                                                                    rdfs:comment "The cities included in any Tour"@en ;
-                                                                                                    rdfs:label "City(wikidata:City)" .
+###  http://xmlns.com/foaf/spec/#Person
+<http://xmlns.com/foaf/spec/#Person> rdf:type owl:Class ;
+                                     rdfs:comment "This is the existing ontology Person class" ;
+                                     rdfs:label "Person (foaf: Person)" .
 
 
-###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#Country(wikidata:Country)
-<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#Country(wikidata:Country)> rdf:type owl:Class ;
-                                                                                                          rdfs:comment "The Countries covered in the tour"@en ;
-                                                                                                          rdfs:label "Country(wikidata:Country)" .
+###  https://dbpedia.org/ontology/City
+<https://dbpedia.org/ontology/City> rdf:type owl:Class ;
+                                    rdfs:comment "This is the exitsting dbpedia ontology for CIty" ;
+                                    rdfs:label "City(dbpedia:City)" .
+
+
+###  https://dbpedia.org/ontology/Country
+<https://dbpedia.org/ontology/Country> rdf:type owl:Class ;
+                                       dcterms:description "This is the dbpedia ontology for Country" ;
+                                       rdfs:label "Country(dbpedia: Country)" .
+
+
+###  https://www.wikidata.org/wiki/ThreeDayTour
+<https://www.wikidata.org/wiki/ThreeDayTour> rdf:type owl:Class ;
+                                             owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty :hasCities ;
+                                                                                          owl:minQualifiedCardinality "7"^^xsd:nonNegativeInteger ;
+                                                                                          owl:onClass :City
+                                                                                        ]
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty :hasCities ;
+                                                                                          owl:maxQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
+                                                                                          owl:onClass :City
+                                                                                        ]
+                                                                                      ) ;
+                                                                   rdf:type owl:Class
+                                                                 ] ;
+                                             rdfs:subClassOf :TourPlans ;
+                                             rdfs:comment "All 3 day tour plans are included" ;
+                                             rdfs:label "ThreeDayPackage" .
+
+
+###  https://www.wikidata.org/wiki/Q174091/CapitalCity
+<https://www.wikidata.org/wiki/Q174091/CapitalCity> rdf:type owl:Class ;
+                                                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty <https://www.wikidata.org/wiki/Q174091/capitalOf> ;
+                                                                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                                          owl:onClass :Country
+                                                                        ] ;
+                                                    rdfs:subClassOf :City ;
+                                                    rdfs:comment "This is the capital city of the destination country" ;
+                                                    rdfs:label "CapitalCity" .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Bombay
-:Bombay rdf:type owl:NamedIndividual ,
-                 <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-        owl:sameAs :Mumbai ;
-        rdfs:comment "A City Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Beijing
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Beijing> rdf:type owl:NamedIndividual ,
+                                                                                                 <https://www.wikidata.org/wiki/Q174091/CapitalCity> ;
+                                                                                        owl:sameAs <https://www.wikidata.org/wiki/Q956> .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Delhi
-:Delhi rdf:type owl:NamedIndividual ,
-                <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-       :isCapitalOf :India ;
-       :isLocatedIn :India .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Bermingham
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Bermingham> rdf:type owl:NamedIndividual ,
+                                                                                                    :City ;
+                                                                                           owl:sameAs <https://www.wikidata.org/wiki/Q4892571> .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#India
-:India rdf:type owl:NamedIndividual ,
-                <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#Country(wikidata:Country)> ;
-       rdfs:comment "A Country Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Changsha
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Changsha> rdf:type owl:NamedIndividual ;
+                                                                                         owl:sameAs <https://www.wikidata.org/wiki/Q174091> .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#IndiaTour
-:IndiaTour rdf:type owl:NamedIndividual ;
-           rdfs:comment "Watt Tour Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Chengdu
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Chengdu> rdf:type owl:NamedIndividual ,
+                                                                                                 :City ;
+                                                                                        owl:sameAs <https://www.wikidata.org/wiki/Q30002> .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Mumbai
-:Mumbai rdf:type owl:NamedIndividual ,
-                 <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-        rdfs:comment "A City Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/China
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/China> rdf:type owl:NamedIndividual ,
+                                                                                               :Country ;
+                                                                                      owl:sameAs <https://www.wikidata.org/wiki/Q29520> .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Mysore
-:Mysore rdf:type owl:NamedIndividual ,
-                 <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-        rdfs:comment "A City Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Delhi
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Delhi> rdf:type owl:NamedIndividual ,
+                                                                                               <https://www.wikidata.org/wiki/Q174091/CapitalCity> ;
+                                                                                      owl:sameAs <https://www.wikidata.org/wiki/Q1353> .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Nasik
-:Nasik rdf:type owl:NamedIndividual ,
-                <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-       rdfs:comment "A City Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/England
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/England> rdf:type owl:NamedIndividual ,
+                                                                                                 :Country ;
+                                                                                        owl:sameAs <https://www.wikidata.org/wiki/Q179876> .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Pune
-:Pune rdf:type owl:NamedIndividual ,
-               <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-      rdfs:comment "A City Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/GoldTour
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/GoldTour> rdf:type owl:NamedIndividual ,
+                                                                                                  :Name .
 
 
-###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#Udupi
-:Udupi rdf:type owl:NamedIndividual ,
-                <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl#City(wikidata:City)> ;
-       rdfs:comment "A City Name" .
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/India
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/India> rdf:type owl:NamedIndividual ,
+                                                                                               :Country ;
+                                                                                      owl:sameAs <https://www.wikidata.org/wiki/Q668> .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London> rdf:type owl:NamedIndividual ,
+                                                                                                <https://www.wikidata.org/wiki/Q174091/CapitalCity> ;
+                                                                                       owl:sameAs <https://www.wikidata.org/wiki/Q84> ;
+                                                                                       rdfs:label "London" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London_In_US
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London_In_US> rdf:type owl:NamedIndividual ,
+                                                                                                      :City ;
+                                                                                             owl:sameAs <https://www.wikidata.org/wiki/Q1001456> .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Manchester
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Manchester> rdf:type owl:NamedIndividual ,
+                                                                                                    :City ;
+                                                                                           owl:sameAs <https://www.wikidata.org/wiki/Q18125> .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai> rdf:type owl:NamedIndividual ,
+                                                                                                :City ;
+                                                                                       owl:sameAs <https://www.wikidata.org/wiki/Q1156> .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore> rdf:type owl:NamedIndividual ,
+                                                                                                :City ;
+                                                                                       owl:sameAs <https://www.wikidata.org/wiki/Q10086> .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/PlatinumTour
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/PlatinumTour> rdf:type owl:NamedIndividual ,
+                                                                                                      :Name .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/SilverTour
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/SilverTour> rdf:type owl:NamedIndividual ,
+                                                                                                    :Name .
+
+
+###  https://www.wikidata.org/wiki/Q1001456
+<https://www.wikidata.org/wiki/Q1001456> rdf:type owl:NamedIndividual ;
+                                         rdfs:label "Wikidata:London_In_US" .
+
+
+###  https://www.wikidata.org/wiki/Q10086
+<https://www.wikidata.org/wiki/Q10086> rdf:type owl:NamedIndividual ;
+                                       rdfs:label "Wikidata:Mysore" .
+
+
+###  https://www.wikidata.org/wiki/Q1156
+<https://www.wikidata.org/wiki/Q1156> rdf:type owl:NamedIndividual ;
+                                      rdfs:label "Wikidata:Mumabi" .
+
+
+###  https://www.wikidata.org/wiki/Q1353
+<https://www.wikidata.org/wiki/Q1353> rdf:type owl:NamedIndividual ;
+                                      rdfs:label "Wikidata:Delhi" .
+
+
+###  https://www.wikidata.org/wiki/Q174091
+<https://www.wikidata.org/wiki/Q174091> rdf:type owl:NamedIndividual ,
+                                                 :City ;
+                                        rdfs:label "Wikidata:Changsha" .
+
+
+###  https://www.wikidata.org/wiki/Q179876
+<https://www.wikidata.org/wiki/Q179876> rdf:type owl:NamedIndividual ;
+                                        rdfs:label "Wikidata:England" .
+
+
+###  https://www.wikidata.org/wiki/Q18125
+<https://www.wikidata.org/wiki/Q18125> rdf:type owl:NamedIndividual ;
+                                       rdfs:label "Wikidata:Manchester" .
+
+
+###  https://www.wikidata.org/wiki/Q29520
+<https://www.wikidata.org/wiki/Q29520> rdf:type owl:NamedIndividual ;
+                                       rdfs:label "Wikidata:China" .
+
+
+###  https://www.wikidata.org/wiki/Q30002
+<https://www.wikidata.org/wiki/Q30002> rdf:type owl:NamedIndividual ;
+                                       rdfs:label "Wkidata:Chengdu" .
+
+
+###  https://www.wikidata.org/wiki/Q4892571
+<https://www.wikidata.org/wiki/Q4892571> rdf:type owl:NamedIndividual ;
+                                         rdfs:label "Wikidata:Bermingham" .
+
+
+###  https://www.wikidata.org/wiki/Q668
+<https://www.wikidata.org/wiki/Q668> rdf:type owl:NamedIndividual ;
+                                     rdfs:label "Wikidata:India" .
+
+
+###  https://www.wikidata.org/wiki/Q84
+<https://www.wikidata.org/wiki/Q84> rdf:type owl:NamedIndividual ;
+                                    rdfs:label "wikidata:London" .
+
+
+###  https://www.wikidata.org/wiki/Q956
+<https://www.wikidata.org/wiki/Q956> rdf:type owl:NamedIndividual ;
+                                     rdfs:label "Wikidata:Beijing" .
 
 
 #################################################################
@@ -428,6 +651,98 @@ owl:topDataProperty rdfs:comment "All the data properties are the sub classes of
 #################################################################
 
 owl:Thing rdfs:comment "All the class hierarchy comes under this class" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Beijing>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Bermingham>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Chengdu>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Manchester>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore>
+                        <https://www.wikidata.org/wiki/Q174091>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Beijing>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Delhi>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Bermingham>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Changsha>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Chengdu>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London_In_US>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Manchester>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Bermingham>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Manchester>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore>
+                        <https://www.wikidata.org/wiki/Q30002>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Bermingham>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Bermingham>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore>
+                        <https://www.wikidata.org/wiki/Q18125>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/China>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/England>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/India>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Delhi>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London_In_US>
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai>
+                        <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore>
+                      )
+] .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
