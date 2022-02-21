@@ -1,0 +1,749 @@
+@prefix : <http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix F21BD-CW1: <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/> .
+@base <https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl> .
+
+<https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl> rdf:type owl:Ontology ;
+                                                                                 dcterms:SubmittedBy """Jiancheng Zhang H00341619
+Shreyas Arunesh H00357095
+Shonan Gomes H00383160"""@en ;
+                                                                                 dcterms:SubmittedTo "Alasdair Gray"@en ;
+                                                                                 dcterms:creator "Shreyas Arunesh, Jiancheng Zhang, Shonan Gomes"@en ;
+                                                                                 dcterms:description """This is the Group coursework for F21BD- CW1.
+ This illiustrates the Knowledge representation of Watt Tour."""@en ;
+                                                                                 dcterms:title "WattTour Ontology"@en ;
+                                                                                 owl:versionInfo "V  02: Remove all OOPS pitfalls."@en ,
+                                                                                                 "V 01: Development of the Ontology"@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/SubmittedBy
+dcterms:SubmittedBy rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/SubmittedTo
+dcterms:SubmittedTo rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dcterms:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  https://www.w3.org/TR/owl-time/#time:day
+<https://www.w3.org/TR/owl-time/#time:day> rdf:type rdfs:Datatype .
+
+
+###  https://www.w3.org/TR/owl-time/#time:days
+<https://www.w3.org/TR/owl-time/#time:days> rdf:type rdfs:Datatype ;
+                                            owl:equivalentClass <https://www.w3.org/TR/owl-time/#time:day> .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#topObjectProperty
+owl:topObjectProperty rdfs:comment "All the object property comes under this class" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/areBasedIn
+F21BD-CW1:areBasedIn rdf:type owl:ObjectProperty ;
+                     owl:inverseOf F21BD-CW1:holds ;
+                     rdfs:domain F21BD-CW1:Places ;
+                     rdfs:range F21BD-CW1:City ;
+                     rdfs:label "areBasedIn" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/areCoveredIn
+F21BD-CW1:areCoveredIn rdf:type owl:ObjectProperty ;
+                       owl:inverseOf F21BD-CW1:willCover ;
+                       rdf:type owl:AsymmetricProperty ;
+                       rdfs:domain F21BD-CW1:City ;
+                       rdfs:range F21BD-CW1:TourPlans ;
+                       rdfs:label "areCoveredIn" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/canRegiesterFor
+F21BD-CW1:canRegiesterFor rdf:type owl:ObjectProperty ;
+                          owl:inverseOf F21BD-CW1:willHave ;
+                          rdf:type owl:AsymmetricProperty ;
+                          rdfs:domain F21BD-CW1:Person ;
+                          rdfs:range F21BD-CW1:WattTour ;
+                          rdfs:comment "Person can regester for Watt Tour" ;
+                          rdfs:label "canRegisterFor"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/hasCapital
+F21BD-CW1:hasCapital rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf owl:topObjectProperty ;
+                     owl:inverseOf F21BD-CW1:isCapitalOf ;
+                     rdf:type owl:FunctionalProperty ,
+                              owl:AsymmetricProperty ;
+                     rdfs:domain F21BD-CW1:Country ;
+                     rdfs:range F21BD-CW1:CapitalCity ;
+                     rdfs:comment "Country has the capital city" ;
+                     rdfs:label "hasCapital"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/hasCities
+F21BD-CW1:hasCities rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    owl:inverseOf F21BD-CW1:isLocatedIn ;
+                    rdf:type owl:AsymmetricProperty ;
+                    rdfs:domain F21BD-CW1:Country ;
+                    rdfs:range F21BD-CW1:City ;
+                    rdfs:comment "Country has cities" ;
+                    rdfs:label "hasCities"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/holds
+F21BD-CW1:holds rdf:type owl:ObjectProperty ;
+                rdfs:domain F21BD-CW1:City ;
+                rdfs:range F21BD-CW1:Places ;
+                rdfs:label "holds" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/isAttractedBy
+F21BD-CW1:isAttractedBy rdf:type owl:ObjectProperty ;
+                        owl:inverseOf F21BD-CW1:isAttractedTo ;
+                        rdf:type owl:AsymmetricProperty ;
+                        rdfs:domain F21BD-CW1:Places ;
+                        rdfs:range F21BD-CW1:Person ;
+                        rdfs:comment "Places is atttracted by person" ;
+                        rdfs:label "isAttractedBy"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/isAttractedTo
+F21BD-CW1:isAttractedTo rdf:type owl:ObjectProperty ,
+                                 owl:AsymmetricProperty ;
+                        rdfs:domain F21BD-CW1:Person ;
+                        rdfs:range F21BD-CW1:Places ;
+                        rdfs:comment "Person is attracted to Places" ;
+                        rdfs:label "isAttractedTo"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/isCapitalOf
+F21BD-CW1:isCapitalOf rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdf:type owl:FunctionalProperty ,
+                               owl:AsymmetricProperty ;
+                      rdfs:domain F21BD-CW1:CapitalCity ;
+                      rdfs:range F21BD-CW1:Country ;
+                      rdfs:comment "City is the capital of the country" ;
+                      rdfs:label "isCapitalOf"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/isLocatedIn
+F21BD-CW1:isLocatedIn rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf owl:topObjectProperty ;
+                      rdf:type owl:AsymmetricProperty ;
+                      rdfs:domain F21BD-CW1:City ;
+                      rdfs:range F21BD-CW1:Country ;
+                      rdfs:comment "City is located in the country" ;
+                      rdfs:label "isLocatedIn"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/isOptionOf
+F21BD-CW1:isOptionOf rdf:type owl:ObjectProperty ;
+                     owl:inverseOf F21BD-CW1:spansFor ;
+                     rdf:type owl:AsymmetricProperty ;
+                     rdfs:domain F21BD-CW1:TourPlans ;
+                     rdfs:range F21BD-CW1:WattTour ;
+                     rdfs:comment "Watt tour has multiple options for the tour" ;
+                     rdfs:label "isOptionOf"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/spansFor
+F21BD-CW1:spansFor rdf:type owl:ObjectProperty ,
+                            owl:FunctionalProperty ;
+                   rdfs:domain F21BD-CW1:WattTour ;
+                   rdfs:range F21BD-CW1:TourPlans ;
+                   rdfs:comment "Watt tour spans Tour plans" ;
+                   rdfs:label "spansFor"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/willCover
+F21BD-CW1:willCover rdf:type owl:ObjectProperty ,
+                             owl:AsymmetricProperty ;
+                    rdfs:domain F21BD-CW1:TourPlans ;
+                    rdfs:range F21BD-CW1:City ;
+                    rdfs:label "willCover" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/willHave
+F21BD-CW1:willHave rdf:type owl:ObjectProperty ,
+                            owl:AsymmetricProperty ,
+                            owl:IrreflexiveProperty ;
+                   rdfs:domain F21BD-CW1:WattTour ;
+                   rdfs:range F21BD-CW1:Person ;
+                   rdfs:comment "Every tour should have a person" ;
+                   rdfs:label "willHave"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.w3.org/2002/07/owl#topDataProperty
+owl:topDataProperty rdfs:comment "All the data properties are the sub classes of this class" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/latitude
+F21BD-CW1:latitude rdf:type owl:DatatypeProperty ;
+                   rdfs:subPropertyOf owl:topDataProperty ;
+                   rdfs:domain F21BD-CW1:City ;
+                   rdfs:range xsd:double ;
+                   rdfs:comment "The longitude of the city - A Double value" ;
+                   rdfs:label "latitude" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/longitude
+F21BD-CW1:longitude rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf owl:topDataProperty ;
+                    rdfs:domain F21BD-CW1:City ;
+                    rdfs:range xsd:double ;
+                    rdfs:comment "The latitude of the city - A Double value" ;
+                    rdfs:label "longitude"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/numberOfDays
+F21BD-CW1:numberOfDays rdf:type owl:DatatypeProperty ;
+                       rdfs:domain F21BD-CW1:TourPlans ;
+                       rdfs:range <https://www.w3.org/TR/owl-time/#time:days> ;
+                       rdfs:label "numberOfDays" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#AdultTourists
+:AdultTourists rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty F21BD-CW1:isAttractedTo ;
+                                     owl:someValuesFrom F21BD-CW1:Places
+                                   ] ;
+               rdfs:subClassOf F21BD-CW1:Tourists ;
+               rdfs:comment "Adult Tourists"@en ;
+               rdfs:label "AdultTourists"@en .
+
+
+###  http://www.semanticweb.org/shreyasarunesh/ontologies/2022/0/untitled-ontology-27#KidsTourists
+:KidsTourists rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                    owl:onProperty F21BD-CW1:isAttractedTo ;
+                                    owl:allValuesFrom F21BD-CW1:KidsAttractions
+                                  ] ;
+              rdfs:subClassOf F21BD-CW1:Tourists ;
+              rdfs:comment "Kids Tourists"@en ;
+              rdfs:label "KidsTourists"@en .
+
+
+###  http://xmlns.com/foaf/spec/#Person
+<http://xmlns.com/foaf/spec/#Person> rdf:type owl:Class ;
+                                     owl:equivalentClass F21BD-CW1:Person ;
+                                     rdfs:comment "This is the existing ontology Person class" ;
+                                     rdfs:label "Person (foaf: Person)" .
+
+
+###  https://dbpedia.org/ontology/City
+<https://dbpedia.org/ontology/City> rdf:type owl:Class ;
+                                    owl:equivalentClass F21BD-CW1:City ;
+                                    rdfs:comment "This is the exitsting dbpedia ontology for CIty" ;
+                                    rdfs:label "City(dbpedia:City)" .
+
+
+###  https://dbpedia.org/ontology/Country
+<https://dbpedia.org/ontology/Country> rdf:type owl:Class ;
+                                       owl:equivalentClass F21BD-CW1:Country ;
+                                       dcterms:description "This is the dbpedia ontology for Country" ;
+                                       rdfs:label "Country(dbpedia: Country)" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/AdultAttractions
+F21BD-CW1:AdultAttractions rdf:type owl:Class ;
+                           owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Class ;
+                                                                        owl:complementOf [ rdf:type owl:Restriction ;
+                                                                                           owl:onProperty F21BD-CW1:isAttractedBy ;
+                                                                                           owl:someValuesFrom :KidsTourists
+                                                                                         ]
+                                                                      ]
+                                                                      [ rdf:type owl:Restriction ;
+                                                                        owl:onProperty F21BD-CW1:isAttractedBy ;
+                                                                        owl:someValuesFrom :AdultTourists
+                                                                      ]
+                                                                    ) ;
+                                                 rdf:type owl:Class
+                                               ] ;
+                           rdfs:subClassOf F21BD-CW1:Places ;
+                           owl:disjointWith F21BD-CW1:KidsAttractions ;
+                           rdfs:comment "The adult Attractions"@en ;
+                           rdfs:label "AdultAttractions"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/CapitalCity
+F21BD-CW1:CapitalCity rdf:type owl:Class ;
+                      rdfs:subClassOf F21BD-CW1:City ;
+                      rdfs:comment "This is the capital city of the destination country" ;
+                      rdfs:label "CapitalCity" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/City
+F21BD-CW1:City rdf:type owl:Class ;
+               owl:equivalentClass [ rdf:type owl:Restriction ;
+                                     owl:onProperty F21BD-CW1:areCoveredIn ;
+                                     owl:someValuesFrom F21BD-CW1:TourPlans
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty F21BD-CW1:holds ;
+                                     owl:someValuesFrom F21BD-CW1:Places
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty F21BD-CW1:isLocatedIn ;
+                                     owl:someValuesFrom F21BD-CW1:Country
+                                   ] ;
+               rdfs:comment "The cities included in any Tour"@en ;
+               rdfs:label "City" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Clubs
+F21BD-CW1:Clubs rdf:type owl:Class ;
+                rdfs:subClassOf F21BD-CW1:AdultAttractions ;
+                owl:disjointWith F21BD-CW1:Temples ;
+                rdfs:comment "The clubs"@en ;
+                rdfs:label "Clubs"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Country
+F21BD-CW1:Country rdf:type owl:Class ;
+                  owl:equivalentClass [ rdf:type owl:Restriction ;
+                                        owl:onProperty F21BD-CW1:hasCities ;
+                                        owl:someValuesFrom F21BD-CW1:City
+                                      ] ;
+                  rdfs:comment "The Countries covered in the tour"@en ;
+                  rdfs:label "Country" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/KidsAttractions
+F21BD-CW1:KidsAttractions rdf:type owl:Class ;
+                          rdfs:subClassOf F21BD-CW1:Places ;
+                          rdfs:comment "The kids Attractions"@en ;
+                          rdfs:label "KidsAttractions"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Museums
+F21BD-CW1:Museums rdf:type owl:Class ;
+                  rdfs:subClassOf F21BD-CW1:KidsAttractions ;
+                  rdfs:comment "The Museums"@en ;
+                  rdfs:label "Museums"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/OneDay
+F21BD-CW1:OneDay rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                              owl:onProperty F21BD-CW1:hasCities ;
+                                                              owl:minQualifiedCardinality "3"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass F21BD-CW1:City
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty F21BD-CW1:hasCities ;
+                                                              owl:maxQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass F21BD-CW1:City
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf F21BD-CW1:TourPlans ;
+                 rdfs:comment "All one day plans are included"@en ;
+                 rdfs:label "OneDayPackage" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Parks
+F21BD-CW1:Parks rdf:type owl:Class ;
+                rdfs:subClassOf F21BD-CW1:KidsAttractions ;
+                owl:disjointWith F21BD-CW1:Temples ;
+                rdfs:comment "The Parks"@en ;
+                rdfs:label "Parks"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Person
+F21BD-CW1:Person rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty F21BD-CW1:canRegiesterFor ;
+                                       owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                       owl:onClass F21BD-CW1:WattTour
+                                     ] ;
+                 rdfs:comment "The Person"@en ;
+                 rdfs:label "Person"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Places
+F21BD-CW1:Places rdf:type owl:Class ;
+                 owl:equivalentClass [ rdf:type owl:Restriction ;
+                                       owl:onProperty F21BD-CW1:areBasedIn ;
+                                       owl:someValuesFrom F21BD-CW1:City
+                                     ] ;
+                 rdfs:comment "Places covered in the Tour"@en ;
+                 rdfs:label "Places" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Temples
+F21BD-CW1:Temples rdf:type owl:Class ;
+                  rdfs:subClassOf F21BD-CW1:AdultAttractions ;
+                  rdfs:comment "The Temples"@en ;
+                  rdfs:label "Temples"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/ThreeDayTour
+F21BD-CW1:ThreeDayTour rdf:type owl:Class ;
+                       owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty F21BD-CW1:hasCities ;
+                                                                    owl:minQualifiedCardinality "7"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass F21BD-CW1:City
+                                                                  ]
+                                                                  [ rdf:type owl:Restriction ;
+                                                                    owl:onProperty F21BD-CW1:hasCities ;
+                                                                    owl:maxQualifiedCardinality "9"^^xsd:nonNegativeInteger ;
+                                                                    owl:onClass F21BD-CW1:City
+                                                                  ]
+                                                                ) ;
+                                             rdf:type owl:Class
+                                           ] ;
+                       rdfs:subClassOf F21BD-CW1:TourPlans ;
+                       rdfs:comment "All 3 day tour plans are included" ;
+                       rdfs:label "ThreeDayPackage" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/TourPlans
+F21BD-CW1:TourPlans rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty F21BD-CW1:willCover ;
+                                          owl:someValuesFrom F21BD-CW1:City
+                                        ] ;
+                    rdfs:comment "The tour Plans"@en ;
+                    rdfs:label "TourPlans"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Tourists
+F21BD-CW1:Tourists rdf:type owl:Class ;
+                   rdfs:subClassOf F21BD-CW1:Person ;
+                   rdfs:comment "Tourists involved in the Tour"@en ;
+                   rdfs:label "Tourists"@en .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/TwoDay
+F21BD-CW1:TwoDay rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                              owl:onProperty F21BD-CW1:hasCities ;
+                                                              owl:minQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass F21BD-CW1:City
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty F21BD-CW1:hasCities ;
+                                                              owl:maxQualifiedCardinality "6"^^xsd:nonNegativeInteger ;
+                                                              owl:onClass F21BD-CW1:City
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf F21BD-CW1:TourPlans ;
+                 rdfs:comment "All two day plans are included"@en ;
+                 rdfs:label "TwoDayPackage" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/WattTour
+F21BD-CW1:WattTour rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:unionOf ( [ rdf:type owl:Restriction ;
+                                                         owl:onProperty F21BD-CW1:spansFor ;
+                                                         owl:someValuesFrom F21BD-CW1:OneDay
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty F21BD-CW1:spansFor ;
+                                                         owl:someValuesFrom F21BD-CW1:ThreeDayTour
+                                                       ]
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty F21BD-CW1:spansFor ;
+                                                         owl:someValuesFrom F21BD-CW1:TwoDay
+                                                       ]
+                                                     )
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty F21BD-CW1:willHave ;
+                                         owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                         owl:onClass F21BD-CW1:Person
+                                       ] ;
+                   rdfs:comment "The Name and description of the tour"@en ;
+                   rdfs:label "WatTour"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.wikidata.org/entity/Q10086
+<http://www.wikidata.org/entity/Q10086> rdf:type owl:NamedIndividual ;
+                                        owl:sameAs F21BD-CW1:Mysore ;
+                                        rdfs:label "Wikidata:Mysore" .
+
+
+###  http://www.wikidata.org/entity/Q1156
+<http://www.wikidata.org/entity/Q1156> rdf:type owl:NamedIndividual ;
+                                       owl:sameAs F21BD-CW1:Mumbai ;
+                                       rdfs:label "Wikidata:Mumabi" .
+
+
+###  http://www.wikidata.org/entity/Q1353
+<http://www.wikidata.org/entity/Q1353> rdf:type owl:NamedIndividual ;
+                                       owl:sameAs F21BD-CW1:Delhi ;
+                                       rdfs:label "Wikidata:Delhi" .
+
+
+###  http://www.wikidata.org/entity/Q145
+<http://www.wikidata.org/entity/Q145> rdf:type owl:NamedIndividual ;
+                                      owl:sameAs F21BD-CW1:United_Kindom ;
+                                      rdfs:label "Wikidata:England" .
+
+
+###  http://www.wikidata.org/entity/Q148
+<http://www.wikidata.org/entity/Q148> rdf:type owl:NamedIndividual ;
+                                      owl:sameAs F21BD-CW1:China ;
+                                      rdfs:label "Wikidata:China" .
+
+
+###  http://www.wikidata.org/entity/Q174091
+<http://www.wikidata.org/entity/Q174091> rdf:type owl:NamedIndividual ;
+                                         owl:sameAs F21BD-CW1:Changsha ;
+                                         rdfs:label "Wikidata:Changsha" .
+
+
+###  http://www.wikidata.org/entity/Q18125
+<http://www.wikidata.org/entity/Q18125> rdf:type owl:NamedIndividual ;
+                                        owl:sameAs F21BD-CW1:Manchester ;
+                                        rdfs:label "Wikidata:Manchester" .
+
+
+###  http://www.wikidata.org/entity/Q2256
+<http://www.wikidata.org/entity/Q2256> rdf:type owl:NamedIndividual ;
+                                       owl:sameAs F21BD-CW1:Birmingham ;
+                                       rdfs:label "Wikidata:Bermingham" .
+
+
+###  http://www.wikidata.org/entity/Q30002
+<http://www.wikidata.org/entity/Q30002> rdf:type owl:NamedIndividual ;
+                                        owl:sameAs F21BD-CW1:Chengdu ;
+                                        rdfs:label "Wkidata:Chengdu" .
+
+
+###  http://www.wikidata.org/entity/Q668
+<http://www.wikidata.org/entity/Q668> rdf:type owl:NamedIndividual ;
+                                      owl:sameAs F21BD-CW1:India ;
+                                      rdfs:label "Wikidata:India" .
+
+
+###  http://www.wikidata.org/entity/Q84
+<http://www.wikidata.org/entity/Q84> rdf:type owl:NamedIndividual ;
+                                     owl:sameAs F21BD-CW1:London ;
+                                     rdfs:label "wikidata:London" .
+
+
+###  http://www.wikidata.org/entity/Q956
+<http://www.wikidata.org/entity/Q956> rdf:type owl:NamedIndividual ;
+                                      owl:sameAs F21BD-CW1:Beijing ;
+                                      rdfs:label "Wikidata:Beijing" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Beijing
+F21BD-CW1:Beijing rdf:type owl:NamedIndividual ,
+                           F21BD-CW1:CapitalCity ,
+                           F21BD-CW1:City ;
+                  F21BD-CW1:isCapitalOf F21BD-CW1:China ;
+                  F21BD-CW1:isLocatedIn F21BD-CW1:China .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Birmingham
+F21BD-CW1:Birmingham rdf:type owl:NamedIndividual ,
+                              F21BD-CW1:City ;
+                     F21BD-CW1:isLocatedIn F21BD-CW1:United_Kindom .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Changsha
+F21BD-CW1:Changsha rdf:type owl:NamedIndividual ,
+                            F21BD-CW1:City ;
+                   F21BD-CW1:isLocatedIn F21BD-CW1:China .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Chengdu
+F21BD-CW1:Chengdu rdf:type owl:NamedIndividual ,
+                           F21BD-CW1:City ;
+                  F21BD-CW1:isLocatedIn F21BD-CW1:China .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/China
+F21BD-CW1:China rdf:type owl:NamedIndividual ,
+                         F21BD-CW1:Country .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Delhi
+F21BD-CW1:Delhi rdf:type owl:NamedIndividual ,
+                         F21BD-CW1:CapitalCity ,
+                         F21BD-CW1:City ;
+                F21BD-CW1:isCapitalOf F21BD-CW1:India ;
+                F21BD-CW1:isLocatedIn F21BD-CW1:India .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/GoldTour
+F21BD-CW1:GoldTour rdf:type owl:NamedIndividual ,
+                            F21BD-CW1:ThreeDayTour ;
+                   F21BD-CW1:numberOfDays 3 .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/India
+F21BD-CW1:India rdf:type owl:NamedIndividual ,
+                         F21BD-CW1:Country .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/London
+F21BD-CW1:London rdf:type owl:NamedIndividual ,
+                          F21BD-CW1:CapitalCity ,
+                          F21BD-CW1:City ;
+                 F21BD-CW1:isCapitalOf F21BD-CW1:United_Kindom ;
+                 F21BD-CW1:isLocatedIn F21BD-CW1:United_Kindom ;
+                 rdfs:label "London" .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Manchester
+F21BD-CW1:Manchester rdf:type owl:NamedIndividual ,
+                              F21BD-CW1:City ;
+                     F21BD-CW1:isLocatedIn F21BD-CW1:United_Kindom .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mumbai
+F21BD-CW1:Mumbai rdf:type owl:NamedIndividual ,
+                          F21BD-CW1:City ;
+                 F21BD-CW1:isLocatedIn F21BD-CW1:India .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/Mysore
+F21BD-CW1:Mysore rdf:type owl:NamedIndividual ,
+                          F21BD-CW1:City ;
+                 F21BD-CW1:isLocatedIn F21BD-CW1:India .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/PlatinumTour
+F21BD-CW1:PlatinumTour rdf:type owl:NamedIndividual ,
+                                F21BD-CW1:OneDay ;
+                       F21BD-CW1:numberOfDays 1 .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/SilverTour
+F21BD-CW1:SilverTour rdf:type owl:NamedIndividual ,
+                              F21BD-CW1:TwoDay ;
+                     F21BD-CW1:numberOfDays 2 .
+
+
+###  https://github.com/ShreyasArunesh/Watt-Tour-Ontology-/blob/main/F21BD-CW1.owl/United_Kindom
+F21BD-CW1:United_Kindom rdf:type owl:NamedIndividual ,
+                                 F21BD-CW1:Country .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+owl:Thing rdfs:comment "All the class hierarchy comes under this class" .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.wikidata.org/entity/Q174091>
+                        F21BD-CW1:Beijing
+                        F21BD-CW1:Birmingham
+                        F21BD-CW1:Chengdu
+                        F21BD-CW1:Manchester
+                        F21BD-CW1:Mumbai
+                        F21BD-CW1:Mysore
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.wikidata.org/entity/Q18125>
+                        F21BD-CW1:Birmingham
+                        F21BD-CW1:Mumbai
+                        F21BD-CW1:Mysore
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( <http://www.wikidata.org/entity/Q30002>
+                        F21BD-CW1:Birmingham
+                        F21BD-CW1:Manchester
+                        F21BD-CW1:Mumbai
+                        F21BD-CW1:Mysore
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( F21BD-CW1:Beijing
+                        F21BD-CW1:Delhi
+                        F21BD-CW1:London
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( F21BD-CW1:Birmingham
+                        F21BD-CW1:Mumbai
+                        F21BD-CW1:Mysore
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( F21BD-CW1:China
+                        F21BD-CW1:India
+                        F21BD-CW1:United_Kindom
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( F21BD-CW1:Delhi
+                        F21BD-CW1:London
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( F21BD-CW1:Mumbai
+                        F21BD-CW1:Mysore
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
